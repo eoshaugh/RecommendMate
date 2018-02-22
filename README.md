@@ -6,11 +6,11 @@ To test this out with expo, you must first download the application from their w
 
 https://expo.io/
 
-**Make sure you have node installed to your computter and install all the packages.
+**Make sure you have node installed to your computter and install all the packages.**
 
 to install all packages run:
 
-**'npm install'
+**'npm install'**
 
 Download the repository and follow the next few steps:
 

@@ -1,16 +1,25 @@
-# Group30_app
+# RecommendMate App
 
-This is our application for our challenge response system.
-We'll be using react native as our interpreter for both iOS and Android
+This is an application to send and recieve recommendations to and from people.
 
 To test this out with expo, you must first download the application from their website and to your phone from the app store.
 
 https://expo.io/
 
-Open terminal, cd to the dir, then cd to my-new-project and run the command 'exp start'.
-
-Make sure you have node installed to your computter and install all the packages. 
+*Make sure you have node installed to your computter and install all the packages.*
 
 to install all packages run:
 
-'npm install npm-install-all -g' in the same dir
+'npm install'
+
+Download the repository and follow the next few steps:
+
+Download the server version of expo (see above).
+
+Open terminal, cd to the dir RMApp , then cd to my-new-project and run the command 'exp start'.
+
+Wait until the QR code shows up, then use your phone to scan it from the expo app.
+
+
+
+

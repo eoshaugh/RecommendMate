@@ -13,15 +13,17 @@ class SendRec extends React.Component{
  			title: '',
  			description: '',
  			user: this.props.navigation.state.params.user,
- 			genre: this.props.navigation.state.params.genre
+ 			genre: this.props.navigation.state.params.genre,
+      recID: 0
  			}; 
  	}
 
  	sendRecommendation(genre, title, description, recipientID){
- 		  app.database().ref('recipient/' + recipientID).set({
+ 		  var newchild = app.database().ref('recipient/').push({
    		genre: genre,
    		title: title,
-    	description: description
+    	description: description,
+      recipient: recipientID
   		});
  	}
 

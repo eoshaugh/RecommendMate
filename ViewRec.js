@@ -3,57 +3,48 @@ import {Button, StyleSheet,Text, ScrollView, TextInput, View, Image,TouchableOpa
 import {StackNavigator} from 'react-navigation';
 import * as firebase from "firebase";
 import {dbconfig} from './dbconfig';
+global.rec = [];
 
 
 export default class ViewRec extends React.Component{
 constructor(props){
 	
  		super(props);
- 		this.titleref = app.database().ref('recipient/1/title')
- 		this.descriptionref = app.database().ref('recipient/1/description')
+ 		this.descriptionref = app.database().ref('recipient/')
  		this.state = {
- 			title: '',
- 			description: ''
+ 			description: []
  			}; 
  	}
 
  componentDidMount(){
- 	this.titleref.on('value', data => {
- 		this.setState({
- 			title: data.val()
- 			
- 			});
- 		
- 	});
- 	this.descriptionref.on('value', data => {
- 		this.setState({
- 			description: data.val()
- 			
- 			});
- 		
- 	});
  
+ 		this.descriptionref.orderByChild("recipient").equalTo(1).on('value', function (snap) {
+ 		global.rec.push(snap.val()); // Push children to a local users array
+ 		console.log(rec);
+ 		});
+ 			this.setState({
+ 			description: rec
+ 			});	
+ 	
+ 	
  	}
  
 
  	render() {
 
+ 	const theType = rec;
+  	const recommendations = theType.map((theType,index)=>
+  	<View key={index}>
+  		<Text>{theType.title}</Text>
+  		<Text>{theType.genre}</Text>
+  		<Text>{theType.description}</Text>
+  	</View>);
  		return (
- 		<View style = {{flex: 1, 
-        backgroundColor: '#FFFFFF', 
-        justifyContent: 'center',
-        alignItems: 'center' }}>
-
- 		<View style = {styles.myButton}>
- 			<Text style ={styles.textInButton}>{this.state.title}</Text>
- 		
- 			<Text style ={styles.textInButton}> {this.state.description} </Text>
+ 		<View>
+ 		{recommendations}
  		</View>
-
- 		</View>
- 		
- 		);
- 	}
+    );
+  }
 
 }
 const styles = StyleSheet.create({

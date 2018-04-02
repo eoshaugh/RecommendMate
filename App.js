@@ -26,7 +26,7 @@ static navigationOptions = {
      <View
       style={{
         backgroundColor: '#c7f464ff',
-        height: 40,
+        height: 50,
         marginTop: 20 /* only for IOS to give StatusBar Space */
       }}
     >

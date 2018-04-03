@@ -27,7 +27,7 @@ static navigationOptions = {
       style={{
         backgroundColor: '#c7f464ff',
         height: 50,
-        marginTop: 20 /* only for IOS to give StatusBar Space */
+        marginTop: 20 
       }}
     >
       <Text style = {{fontWeight: 'bold',

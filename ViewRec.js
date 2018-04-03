@@ -3,6 +3,7 @@ import {Button, StyleSheet,Text, ScrollView, TextInput, View, Image,TouchableOpa
 import {StackNavigator} from 'react-navigation';
 import * as firebase from "firebase";
 import {dbconfig} from './dbconfig';
+import Recommend from'./Recommend.js'
 global.rec = [];
 
 
@@ -10,35 +11,42 @@ export default class ViewRec extends React.Component{
 constructor(props){
 	
  		super(props);
- 		this.descriptionref = app.database().ref('recipient/')
+ 		
  		this.state = {
- 			description: []
+ 			dataSource: [],
  			}; 
+      this.descriptionref = app.database().ref('recipient/')
  	}
 
- componentDidMount(){
- 
+componentDidMount(){
+    var items = [];
+    var that=this; //stupid error
  		this.descriptionref.orderByChild("recipient").equalTo(1).on('value', function (snap) {
- 		global.rec.push(snap.val()); // Push children to a local users array
- 		console.log(rec);
+      snap.forEach((child) => {
+        items.push({
+          title: child.val().title,
+          genre: child.val().genre,
+          description:child.val().description,
+          _key: child.key
+        });
+      });
+      that.setState({
+        dataSource: items
+      });
  		});
- 			this.setState({
- 			description: rec
- 			});	
- 	
- 	
  	}
  
 
  	render() {
-
- 	const theType = rec;
+    console.log(this.state.dataSource)
+     const theType = this.state.dataSource;
   	const recommendations = theType.map((theType,index)=>
-  	<View key={index}>
-  		<Text>{theType.title}</Text>
-  		<Text>{theType.genre}</Text>
-  		<Text>{theType.description}</Text>
-  	</View>);
+  	<Recommend
+      title={theType.title}
+  		genre={theType.genre}
+  		description={theType.description}
+      key={theType.key}
+      id={index}/>);
  		return (
  		<View>
  		{recommendations}
@@ -64,3 +72,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 })
+
